@@ -3,12 +3,17 @@
   "version": "0.0.5",
   "description": "A simple bot which you can send hashtags and the bot sends Voices, Videos or Photos.",
   "bin": {
-    "bot": "src/index.js"
+    "bot": "build/index.js"
   },
   "scripts": {
-    "start": "npm watch",
+    "start": "npm run start:prod",
     "start:dev": "cross-env NODE_ENV=development DEBUG=bot:* babel-node src/index.js",
+    "start:prod": "npm run prepublish && cross-env NODE_ENV=production DEBUG=bot:*,-*debug,-*log node build/index.js",
     "watch": "cross-env NODE_ENV=development DEBUG=bot:* babel-watch -w src src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf build",
+    "compile": "babel --presets es2015 -d build/ src/",
+    "prepublish": "npm run clean && npm run compile"
   },
   "repository": {
     "type": "git",
