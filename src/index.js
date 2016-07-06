@@ -21,7 +21,7 @@ networks.on('command', (evt, reply) => {
       reply(message(evt.channel, evt.args.join('')))
     break
     case 'maxi':
-      let maxi = Math.floor((Math.random() * 12) + 1)
+      let maxi = Math.floor((Math.random() * 20) + 1)
       reply({
         type: 'sendPhoto',
         action: 'upload_photo',
@@ -29,6 +29,14 @@ networks.on('command', (evt, reply) => {
         photo: fs.createReadStream(path.join(__dirname, `pic/${maxi}.jpg`))
       })
     break
+      case 'snowball':
+      let snowball = Math.floor((Math.random() * 10) + 1)
+      reply({
+        type: 'sendPhoto',
+        action: 'upload_photo',
+        id: evt.channel,
+        photo: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`))
+      })
   }
 })
 
