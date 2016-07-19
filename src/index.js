@@ -76,3 +76,16 @@ networks.on('message', (evt, reply) => {
     photo: fs.createReadStream(path.join(__dirname, `pic/etc/${pic[1]}.jpg`))
   })}
 })
+
+networks.on('message', function (evt, reply) {
+  var sticker = evt.text.match(/#([a-zA-Z]+)/);
+
+  if (sticker && sticker.length > 1) {
+    reply({
+      type: 'sendSticker',
+      action: 'upload_photo',
+      id: evt.channel,
+      sticker: _fs2.default.createReadStream(_path2.default.join(__dirname, '/../sticker/' + sticker[1] + '.webp'))
+    });
+  }
+});
