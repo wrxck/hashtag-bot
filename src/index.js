@@ -1,12 +1,25 @@
 import dude from 'debug-dude'
 const { /*debug,*/ log, info /*, warn, error*/ } = dude('bot')
 
+const maxi = Math.floor((Math.random() * 20) + 1)
+const snowball = Math.floor((Math.random() * 10) + 1)
+
 import { version } from '../package.json'
-info(`jdnet bot v${version} starting`)
+info(`JoshBot v${version} starting`)
 
 import config from '../config.json'
 
 import { connect, message } from 'coffea'
+export const htmlMessage = (msg) => {
+  return {
+    type: 'message',
+    text: msg,
+    options: {
+      parse_mode: 'HTML'
+    }
+  }
+}
+
 const networks = connect(config)
 
 import fs from 'fs'
@@ -21,13 +34,23 @@ networks.on('command', (evt, reply) => {
       reply(message(evt.channel, evt.args.join('')))
     break
     case 'maxi':
-      let maxi = Math.floor((Math.random() * 12) + 1)
+      reply({
+		type: 'sendPhoto',
+        action: 'upload_photo',
+        photo: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`))
+      })
+    break
+    case 'snowball':
       reply({
         type: 'sendPhoto',
         action: 'upload_photo',
-        id: evt.channel,
-        photo: fs.createReadStream(path.join(__dirname, `pic/${maxi}.jpg`))
+        photo: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`))
       })
+	break
+    case 'version':
+    reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
+	case 'issues':
+    reply(htmlMessage('<b>Please report issues< <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
   }
 })
@@ -42,10 +65,10 @@ networks.on('message', (evt, reply) => {
   reply({
     type: 'sendVoice',
     action: 'record_audio',
-    id: evt.channel,
-    voice: fs.createReadStream(path.join(__dirname, `voice/${hashtags[1]}.mp3`))
+    voice: fs.createReadStream(path.join(__dirname, `/../voice/${hashtags[1]}.mp3`))
   })}
 })
+
 networks.on('message', (evt, reply) => {
   let video = evt.text.match(/#([a-zA-Z]+)/)
 
@@ -53,10 +76,10 @@ networks.on('message', (evt, reply) => {
   reply({
     type: 'sendVideo',
     action: 'record_video',
-    id: evt.channel,
-    video: fs.createReadStream(path.join(__dirname, `video/${video[1]}.mp4`))
+    video: fs.createReadStream(path.join(__dirname, `/../video/${video[1]}.mp4`))
   })}
 })
+
 networks.on('message', (evt, reply) => {
   let pic = evt.text.match(/#([a-zA-Z]+)/)
 
@@ -64,7 +87,17 @@ networks.on('message', (evt, reply) => {
   reply({
     type: 'sendPhoto',
     action: 'upload_photo',
-    id: evt.channel,
-    photo: fs.createReadStream(path.join(__dirname, `pic/etc/${pic[1]}.jpg`))
+    photo: fs.createReadStream(path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`))
+  })}
+})
+
+networks.on('message', (evt, reply) => {
+  let sticker = evt.text.match(/#([a-zA-Z]+)/)
+
+  if (sticker && sticker.length > 1) {
+  reply({
+    type: 'sendSticker',
+    action: 'upload_photo',
+    sticker: fs.createReadStream(path.join(__dirname, `/../sticker/${sticker[1]}.webp`))
   })}
 })
