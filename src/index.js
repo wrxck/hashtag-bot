@@ -35,16 +35,16 @@ networks.on('command', (evt, reply) => {
     break
     case 'maxi':
       reply({
-		type: 'sendPhoto',
-        action: 'upload_photo',
-        photo: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`))
+        chat: evt && evt.chat,
+		    type: 'photo',
+        data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`))
       })
     break
     case 'snowball':
       reply({
-        type: 'sendPhoto',
-        action: 'upload_photo',
-        photo: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`))
+        chat: evt && evt.chat,
+        type: 'photo',
+        data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`))
       })
 	break
     case 'version':
@@ -63,9 +63,9 @@ networks.on('message', (evt, reply) => {
 
   if (hashtags && hashtags.length > 1) {
   reply({
-    type: 'sendVoice',
-    action: 'record_audio',
-    voice: fs.createReadStream(path.join(__dirname, `/../voice/${hashtags[1]}.mp3`))
+    chat: evt && evt.chat,
+    type: 'voice',
+    data: fs.createReadStream(path.join(__dirname, `/../voice/${hashtags[1]}.mp3`))
   })}
 })
 
@@ -74,9 +74,9 @@ networks.on('message', (evt, reply) => {
 
   if (video && video.length > 1) {
   reply({
-    type: 'sendVideo',
-    action: 'record_video',
-    video: fs.createReadStream(path.join(__dirname, `/../video/${video[1]}.mp4`))
+    chat: evt && evt.chat,
+    type: 'video',
+    data: fs.createReadStream(path.join(__dirname, `/../video/${video[1]}.mp4`))
   })}
 })
 
@@ -85,9 +85,9 @@ networks.on('message', (evt, reply) => {
 
   if (pic && pic.length > 1) {
   reply({
-    type: 'sendPhoto',
-    action: 'upload_photo',
-    photo: fs.createReadStream(path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`))
+    chat: evt && evt.chat,
+    type: 'photo',
+    data: fs.createReadStream(path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`))
   })}
 })
 
@@ -96,8 +96,8 @@ networks.on('message', (evt, reply) => {
 
   if (sticker && sticker.length > 1) {
   reply({
-    type: 'sendSticker',
-    action: 'upload_photo',
-    sticker: fs.createReadStream(path.join(__dirname, `/../sticker/${sticker[1]}.webp`))
+    chat: evt && evt.chat,
+    type: 'sticker',
+    data: fs.createReadStream(path.join(__dirname, `/../sticker/${sticker[1]}.webp`))
   })}
 })
