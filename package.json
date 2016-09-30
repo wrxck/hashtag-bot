@@ -30,7 +30,7 @@
     "telegram"
   ],
   "author": "Joshua Dehler <me@j0sh.de>",
-  "license": "GNU",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/6697/hashtag-bot/issues"
   },
