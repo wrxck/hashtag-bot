@@ -62,42 +62,62 @@ networks.on('message', (evt, reply) => {
   let hashtags = evt.text.match(/#([a-zA-Z]+)/)
 
   if (hashtags && hashtags.length > 1) {
-  reply({
-    chat: evt && evt.chat,
-    type: 'voice',
-    data: fs.createReadStream(path.join(__dirname, `/../voice/${hashtags[1]}.mp3`))
-  })}
+    let voicePath = path.join(__dirname, `/../voice/${hashtags[1]}.mp3`)
+
+    if (fs.existsSync(voicePath)) {
+      reply({
+        chat: evt && evt.chat,
+        type: 'voice',
+        data: fs.createReadStream(voicePath)
+      })
+    }
+  }
 })
 
 networks.on('message', (evt, reply) => {
   let video = evt.text.match(/#([a-zA-Z]+)/)
 
   if (video && video.length > 1) {
-  reply({
-    chat: evt && evt.chat,
-    type: 'video',
-    data: fs.createReadStream(path.join(__dirname, `/../video/${video[1]}.mp4`))
-  })}
+    let videoPath = path.join(__dirname, `/../video/${video[1]}.mp4`)
+
+    if (fs.existsSync(videoPath)) {
+      reply({
+        chat: evt && evt.chat,
+        type: 'video',
+        data: fs.createReadStream(videoPath)
+      })
+    }
+  }
 })
 
 networks.on('message', (evt, reply) => {
   let pic = evt.text.match(/#([a-zA-Z]+)/)
 
   if (pic && pic.length > 1) {
-  reply({
-    chat: evt && evt.chat,
-    type: 'photo',
-    data: fs.createReadStream(path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`))
-  })}
+    let photoPath = path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`)
+
+    if (fs.existsSync(photoPath)) {
+      reply({
+        chat: evt && evt.chat,
+        type: 'photo',
+        data: fs.createReadStream(photoPath)
+      })
+    }
+  }
 })
 
 networks.on('message', (evt, reply) => {
   let sticker = evt.text.match(/#([a-zA-Z]+)/)
 
   if (sticker && sticker.length > 1) {
-  reply({
-    chat: evt && evt.chat,
-    type: 'sticker',
-    data: fs.createReadStream(path.join(__dirname, `/../sticker/${sticker[1]}.webp`))
-  })}
+    let stickerPath = path.join(__dirname, `/../sticker/${sticker[1]}.webp`)
+
+    if (fs.existsSync(stickerPath)) {
+      reply({
+        chat: evt && evt.chat,
+        type: 'sticker',
+        data: fs.createReadStream(stickerPath)
+      })
+    }
+  }
 })
