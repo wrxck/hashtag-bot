@@ -1,9 +1,6 @@
 import dude from 'debug-dude'
 const { /*debug,*/ log, info /*, warn, error*/ } = dude('bot')
 
-const maxi = Math.floor((Math.random() * 20) + 1)
-const snowball = Math.floor((Math.random() * 10) + 1)
-
 import { version } from '../package.json'
 info(`JoshBot v${version} starting`)
 
@@ -34,23 +31,33 @@ networks.on('command', (evt, reply) => {
       reply(message(evt.channel, evt.args.join('')))
     break
     case 'maxi':
+	let maxi = Math.floor((Math.random() * 20) + 1)
       reply({
         chat: evt && evt.chat,
-		    type: 'photo',
-        data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`))
+		type: 'photo',
+        data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
+		options: {
+			caption: 'Meow! 😻',
+			action: 'upload_photo'
+       }
       })
     break
     case 'snowball':
+	let snowball = Math.floor((Math.random() * 10) + 1)
       reply({
         chat: evt && evt.chat,
         type: 'photo',
-        data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`))
+        data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
+		options: {
+			caption: 'Meow! 😻',
+			action: 'upload_photo'
+       }
       })
 	break
     case 'version':
     reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
 	case 'issues':
-    reply(htmlMessage('<b>Please report issues< <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
+    reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
   }
 })
