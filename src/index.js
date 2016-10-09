@@ -27,36 +27,33 @@ networks.on('command', (evt, reply) => {
   log('Received command event: %o', evt)
 
   switch (evt.cmd) {
-    case 'say':
-      reply(message(evt.channel, evt.args.join('')))
-    break
     case 'maxi':
 	let maxi = Math.floor((Math.random() * 20) + 1)
-      reply({
-        chat: evt && evt.chat,
-		type: 'photo',
-        data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
-		options: {
-			caption: 'Meow! 😻',
-			action: 'upload_photo'
-       }
+     	 reply({
+       	 chat: evt && evt.chat,
+	 type: 'photo',
+         data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
+	  options: {
+		caption: 'Meow! 😻',
+		action: 'upload_photo'
+       	}
       })
     break
     case 'snowball':
 	let snowball = Math.floor((Math.random() * 10) + 1)
-      reply({
-        chat: evt && evt.chat,
-        type: 'photo',
-        data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
-		options: {
-			caption: 'Meow! 😻',
-			action: 'upload_photo'
-       }
+     	 reply({
+       	 chat: evt && evt.chat,
+      	 type: 'photo',
+      	 data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
+	  options: {
+		caption: 'Meow! 😻',
+		action: 'upload_photo'
+          }
       })
 	break
     case 'version':
     reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
-	case 'issues':
+    case 'issues':
     reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
   }
