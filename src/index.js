@@ -56,6 +56,9 @@ networks.on('command', (evt, reply) => {
     case 'issues':
     reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
+    case 'gf':
+    reply(htmlMessage('<b>tfwnogf ¯\_(ツ)_/¯</b>'))
+    break
   }
 })
 
