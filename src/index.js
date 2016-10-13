@@ -29,13 +29,13 @@ networks.on('command', (evt, reply) => {
   switch (evt.cmd) {
     case 'maxi':
 	let maxi = Math.floor((Math.random() * 20) + 1)
+	reply({ type: 'sendChatAction', action: 'typing' })
      	 reply({
        	 chat: evt && evt.chat,
 	 type: 'photo',
          data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
 	  options: {
-		caption: 'Meow! 😻',
-		action: 'upload_photo'
+		caption: 'Meow! 😻'
        	}
       })
     break
@@ -46,17 +46,16 @@ networks.on('command', (evt, reply) => {
       	 type: 'photo',
       	 data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
 	  options: {
-		caption: 'Meow! 😻',
-		action: 'upload_photo'
+		caption: 'Meow! 😻'
           }
       })
-	break
-    case 'version':
+    break
+    case 'about':
     reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
     case 'issues':
     reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
-    case 'gf':
+    case 'nogf':
     reply(htmlMessage('<b>tfwnogf ¯\_(ツ)_/¯</b>'))
     break
   }
