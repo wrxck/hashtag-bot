@@ -57,6 +57,9 @@ networks.on('command', (evt, reply) => {
     case 'nogf':
     reply(htmlMessage('<b>tfwnogf ¯\_(ツ)_/¯</b>'))
     break
+    case 'gf':
+    reply(htmlMessage('<b>soon™ :^)</b>'))
+    break
   }
 })
 
