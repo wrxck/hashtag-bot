@@ -34,8 +34,7 @@ networks.on('command', (evt, reply) => {
 	 type: 'photo',
          data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
 	  options: {
-		caption: 'Meow! 😻',
-		action: 'upload_photo'
+		caption: 'Meow! 😻'
        	}
       })
     break
@@ -46,8 +45,7 @@ networks.on('command', (evt, reply) => {
       	 type: 'photo',
       	 data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
 	  options: {
-		caption: 'Meow! 😻',
-		action: 'upload_photo'
+		caption: 'Meow! 😻'
           }
       })
     break
@@ -75,10 +73,7 @@ networks.on('message', (evt, reply) => {
       reply({
         chat: evt && evt.chat,
         type: 'voice',
-        data: fs.createReadStream(voicePath),
-	 options: {
-		action: 'record_audio'
-         }
+        data: fs.createReadStream(voicePath)
       })
     }
   }
@@ -94,10 +89,7 @@ networks.on('message', (evt, reply) => {
       reply({
         chat: evt && evt.chat,
         type: 'video',
-        data: fs.createReadStream(videoPath),
-	 options: {
-		action: 'record_video'
-         }
+        data: fs.createReadStream(videoPath)
       })
     }
   }
@@ -113,10 +105,7 @@ networks.on('message', (evt, reply) => {
       reply({
         chat: evt && evt.chat,
         type: 'photo',
-        data: fs.createReadStream(photoPath),
-	 options: {
-		action: 'upload_photo'
-         }
+        data: fs.createReadStream(photoPath)
       })
     }
   }
