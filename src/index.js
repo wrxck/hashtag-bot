@@ -30,7 +30,6 @@ networks.on('command', (evt, reply) => {
     case 'maxi':
 	let maxi = Math.floor((Math.random() * 20) + 1)
      	 reply({
-       	 chat: evt && evt.chat,
 	 type: 'photo',
          data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
 	  options: {
@@ -41,7 +40,6 @@ networks.on('command', (evt, reply) => {
     case 'snowball':
 	let snowball = Math.floor((Math.random() * 10) + 1)
      	 reply({
-       	 chat: evt && evt.chat,
       	 type: 'photo',
       	 data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
 	  options: {
@@ -71,7 +69,6 @@ networks.on('message', (evt, reply) => {
 
     if (fs.existsSync(voicePath)) {
       reply({
-        chat: evt && evt.chat,
         type: 'voice',
         data: fs.createReadStream(voicePath)
       })
@@ -87,7 +84,6 @@ networks.on('message', (evt, reply) => {
 
     if (fs.existsSync(videoPath)) {
       reply({
-        chat: evt && evt.chat,
         type: 'video',
         data: fs.createReadStream(videoPath)
       })
@@ -103,7 +99,6 @@ networks.on('message', (evt, reply) => {
 
     if (fs.existsSync(photoPath)) {
       reply({
-        chat: evt && evt.chat,
         type: 'photo',
         data: fs.createReadStream(photoPath)
       })
@@ -119,7 +114,6 @@ networks.on('message', (evt, reply) => {
 
     if (fs.existsSync(stickerPath)) {
       reply({
-        chat: evt && evt.chat,
         type: 'sticker',
         data: fs.createReadStream(stickerPath)
       })
