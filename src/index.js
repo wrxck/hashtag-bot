@@ -29,6 +29,7 @@ networks.on('command', (evt, reply) => {
   switch (evt.cmd) {
     case 'maxi':
 	let maxi = Math.floor((Math.random() * 20) + 1)
+	reply({ type: 'action', action: 'upload_photo' })
      	 reply({
 	 type: 'photo',
          data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
@@ -39,6 +40,7 @@ networks.on('command', (evt, reply) => {
     break
     case 'snowball':
 	let snowball = Math.floor((Math.random() * 10) + 1)
+	reply({ type: 'action', action: 'upload_photo' })
      	 reply({
       	 type: 'photo',
       	 data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
@@ -48,7 +50,7 @@ networks.on('command', (evt, reply) => {
       })
     break
     case 'about':
-    reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
+    reply(htmlMessage('JoshBot 1.0.1 - https://github.com/6697/hashtag-bot'))
     case 'issues':
     reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
@@ -68,6 +70,7 @@ networks.on('message', (evt, reply) => {
     let voicePath = path.join(__dirname, `/../voice/${hashtags[1]}.mp3`)
 
     if (fs.existsSync(voicePath)) {
+     reply({ type: 'action', action: 'record_audio' })
       reply({
         type: 'voice',
         data: fs.createReadStream(voicePath)
@@ -83,6 +86,7 @@ networks.on('message', (evt, reply) => {
     let videoPath = path.join(__dirname, `/../video/${video[1]}.mp4`)
 
     if (fs.existsSync(videoPath)) {
+     reply({ type: 'action', action: 'record_video' })
       reply({
         type: 'video',
         data: fs.createReadStream(videoPath)
@@ -98,6 +102,7 @@ networks.on('message', (evt, reply) => {
     let photoPath = path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`)
 
     if (fs.existsSync(photoPath)) {
+     reply({ type: 'action', action: 'upload_photo' })
       reply({
         type: 'photo',
         data: fs.createReadStream(photoPath)
