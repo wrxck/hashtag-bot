@@ -29,7 +29,7 @@ networks.on('command', (evt, reply) => {
   switch (evt.cmd) {
     case 'maxi':
 	let maxi = Math.floor((Math.random() * 20) + 1)
-	reply({ type: 'sendChatAction', action: 'typing' })
+	reply({ type: 'action', action: 'upload_photo' })
      	 reply({
        	 chat: evt && evt.chat,
 	 type: 'photo',
@@ -41,6 +41,7 @@ networks.on('command', (evt, reply) => {
     break
     case 'snowball':
 	let snowball = Math.floor((Math.random() * 10) + 1)
+	reply({ type: 'action', action: 'upload_photo' })
      	 reply({
        	 chat: evt && evt.chat,
       	 type: 'photo',
@@ -71,6 +72,7 @@ networks.on('message', (evt, reply) => {
     let voicePath = path.join(__dirname, `/../voice/${hashtags[1]}.mp3`)
 
     if (fs.existsSync(voicePath)) {
+     reply({ type: 'action', action: 'record_audio' })
       reply({
         chat: evt && evt.chat,
         type: 'voice',
@@ -87,6 +89,7 @@ networks.on('message', (evt, reply) => {
     let videoPath = path.join(__dirname, `/../video/${video[1]}.mp4`)
 
     if (fs.existsSync(videoPath)) {
+     reply({ type: 'action', action: 'record_video' })
       reply({
         chat: evt && evt.chat,
         type: 'video',
@@ -103,6 +106,7 @@ networks.on('message', (evt, reply) => {
     let photoPath = path.join(__dirname, `/../pic/etc/${pic[1]}.jpg`)
 
     if (fs.existsSync(photoPath)) {
+     reply({ type: 'action', action: 'upload_photo' })
       reply({
         chat: evt && evt.chat,
         type: 'photo',
