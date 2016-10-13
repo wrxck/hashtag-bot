@@ -47,7 +47,7 @@
     "rimraf": "^2.5.2"
   },
   "dependencies": {
-    "coffea": "^1.0.0-beta17",
+    "coffea": "^1.0.0-beta18",
     "coffea-telegram": "^1.0.0-beta9-4",
     "debug-dude": "^1.0.3",
     "lastfm": "^0.9.2"
