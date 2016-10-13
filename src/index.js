@@ -50,13 +50,13 @@ networks.on('command', (evt, reply) => {
 		action: 'upload_photo'
           }
       })
-	break
-    case 'version':
-    reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
+    break
+    case 'about':
+    reply(htmlMessage('JoshBot v1.0.0 - https://github.com/6697/hashtag-bot'))
     case 'issues':
     reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
-    case 'gf':
+    case 'nogf':
     reply(htmlMessage('<b>tfwnogf ¯\_(ツ)_/¯</b>'))
     break
   }
@@ -75,7 +75,10 @@ networks.on('message', (evt, reply) => {
       reply({
         chat: evt && evt.chat,
         type: 'voice',
-        data: fs.createReadStream(voicePath)
+        data: fs.createReadStream(voicePath),
+	 options: {
+		action: 'record_audio'
+         }
       })
     }
   }
@@ -91,7 +94,10 @@ networks.on('message', (evt, reply) => {
       reply({
         chat: evt && evt.chat,
         type: 'video',
-        data: fs.createReadStream(videoPath)
+        data: fs.createReadStream(videoPath),
+	 options: {
+		action: 'record_video'
+         }
       })
     }
   }
@@ -107,7 +113,10 @@ networks.on('message', (evt, reply) => {
       reply({
         chat: evt && evt.chat,
         type: 'photo',
-        data: fs.createReadStream(photoPath)
+        data: fs.createReadStream(photoPath),
+	 options: {
+		action: 'upload_photo'
+         }
       })
     }
   }
