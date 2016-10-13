@@ -52,7 +52,7 @@ networks.on('command', (evt, reply) => {
       })
     break
     case 'about':
-    reply(htmlMessage('JoshBot v0.0.6 - https://github.com/6697/hashtag-bot'))
+    reply(htmlMessage('JoshBot 1.0.0 - https://github.com/6697/hashtag-bot'))
     case 'issues':
     reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
     break
