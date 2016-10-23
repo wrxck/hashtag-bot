@@ -2,19 +2,19 @@ import dude from 'debug-dude'
 const { /*debug,*/ log, info /*, warn, error*/ } = dude('bot')
 
 import { version } from '../package.json'
-info(`JoshBot v${version} starting`)
+info(`hashtag-bot v${version} initialising...`)
 
 import config from '../config.json'
 
 import { connect, message } from 'coffea'
 export const htmlMessage = (msg) => {
-  return {
-    type: 'message',
-    text: msg,
-    options: {
-      parse_mode: 'HTML'
-    }
-  }
+	return {
+		type: 'message',
+		text: msg,
+		options: {
+			parse_mode: 'HTML'
+		}
+	}
 }
 
 const networks = connect(config)
@@ -24,43 +24,48 @@ import path from 'path'
 import http from 'http'
 
 networks.on('command', (evt, reply) => {
-  log('Received command event: %o', evt)
-
-  switch (evt.cmd) {
-    case 'maxi':
+	log('Received command event: %o', evt)
+	
+	switch (evt.cmd) {
+	case 'maxi':
 	let maxi = Math.floor((Math.random() * 20) + 1)
-	reply({ type: 'action', action: 'upload_photo' })
-     	 reply({
-	 type: 'photo',
-         data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
-	  options: {
-		caption: 'Meow! 😻'
-       	}
-      })
-    break
-    case 'snowball':
+	reply({
+		type: 'action',
+		action: 'upload_photo'
+	})
+	reply({
+		type: 'photo',
+		data: fs.createReadStream(path.join(__dirname, `/../pic/maxi/${maxi}.jpg`)),
+		options: {
+			caption: 'Meow! 😻'
+		}
+	})
+	break
+	case 'snowball':
 	let snowball = Math.floor((Math.random() * 10) + 1)
-	reply({ type: 'action', action: 'upload_photo' })
-     	 reply({
-      	 type: 'photo',
-      	 data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
-	  options: {
-		caption: 'Meow! 😻'
-          }
-      })
-    break
-    case 'about':
-    reply(htmlMessage('JoshBot 1.0.1 - https://github.com/6697/hashtag-bot'))
+	reply({
+		type: 'action',
+		action: 'upload_photo' })
+	reply({
+		type: 'photo',
+		data: fs.createReadStream(path.join(__dirname, `/../pic/snowball/${snowball}.jpg`)),
+		options: {
+			caption: 'Meow! 😻'
+		}
+	})
+	break
+	case 'about':
+    reply(htmlMessage('<a href="https://github.com/6697/hashtag-bot>hashtag-bot v1.0.1<'))
     case 'issues':
-    reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>'))
+    reply(htmlMessage('<b>Please report issues</b> <a href="https://github.com/6697/hashtag-bot/issues">here</a>.'))
     break
     case 'nogf':
     reply(htmlMessage('<b>tfwnogf ¯\_(ツ)_/¯</b>'))
     break
-    case 'gf':
-    reply(htmlMessage('<b>soon™ :^)</b>'))
-    break
-  }
+	case 'gf':
+	reply(htmlMessage('<b>soon™ :^)</b>'))
+	break
+	}
 })
 
 
