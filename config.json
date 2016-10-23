@@ -1,4 +1,4 @@
 {
-  "protocol": "telegram",
-  "token": "Message @BotFather"
+	"protocol": "telegram",
+	"token": "Message @BotFather"
 }
